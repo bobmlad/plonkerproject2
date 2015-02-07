@@ -7,6 +7,7 @@ public class NetworkManager : MonoBehaviour {
 	private const string gameName = "hello deyre";
 	public GameObject chaserPrefab;
 	public GameObject runnerPrefab;
+	public GUIText lifeText;
 
 	private void StartServer()
 	{
@@ -78,5 +79,7 @@ public class NetworkManager : MonoBehaviour {
 			brian.GetComponent<LifeController>().lifeText = GameObject.Find ("lifeText").GetComponent<GUIText>();
 		}
 		ControllerScript.players.Add(brian);
+		lifeText.text = ControllerScript.players.Count.ToString();
+
 	}
 }

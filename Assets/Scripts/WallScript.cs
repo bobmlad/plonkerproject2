@@ -9,37 +9,40 @@ public class WallScript : MonoBehaviour {
 	public float flipfreq;
 	public float toturn = 90.0f;
 	public int turning; 
-	
+
 	void Update ()
 	{
-		if (waittime>1)
+		if (Network.isServer)
 		{
-			waittime=waittime-1;
-		}
-		else
-		{
-			waittime=tobewaited;
-			flipchance=Random.Range(0.0f,1.0f);
-			if (flipchance<flipfreq)
+			if (waittime>1)
 			{
-				if (toturn>0)
-				{
-					turning=1;
-				}
-				
-			}
-		}
-		if (turning==1)
-		{
-			if (toturn>0)
-			{
-				transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y+0.25f, transform.eulerAngles.z);
-				toturn=toturn-0.25f;
+				waittime=waittime-1;
 			}
 			else
 			{
-				turning=0;
-				toturn=90.0f;
+				waittime=tobewaited;
+				flipchance=Random.Range(0.0f,1.0f);
+				if (flipchance<flipfreq)
+				{
+					if (toturn>0)
+					{
+						turning=1;
+					}
+					
+				}
+			}
+			if (turning==1)
+			{
+				if (toturn>0)
+				{
+					transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y+0.25f, transform.eulerAngles.z);
+					toturn=toturn-0.25f;
+				}
+				else
+				{
+					turning=0;
+					toturn=90.0f;
+				}
 			}
 		}
 	}
