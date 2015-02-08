@@ -8,6 +8,7 @@ public class NetworkManager : MonoBehaviour {
 	public GameObject chaserPrefab;
 	public GameObject runnerPrefab;
 	public GUIText lifeText;
+	private int updatemana;
 
 	private void StartServer()
 	{
@@ -77,9 +78,17 @@ public class NetworkManager : MonoBehaviour {
 		{
 			brian=(GameObject) Network.Instantiate(chaserPrefab, new Vector3(1400f, 24f, 1122f), Quaternion.identity, 0);
 			brian.GetComponent<LifeController>().lifeText = GameObject.Find ("lifeText").GetComponent<GUIText>();
+			lifeText.text = ChaserPlayerScript.mana.ToString();
+			updatemana=1;
 		}
 		ControllerScript.players.Add(brian);
-		lifeText.text = ControllerScript.players.Count.ToString();
+	}
 
+	void Update()
+	{
+		if (updatemana==1)
+		{
+			lifeText.text = ChaserPlayerScript.mana.ToString();
+		}
 	}
 }
