@@ -8,7 +8,7 @@
 class ScreenOverlay extends PostEffectsBase {
 	
 	enum OverlayBlendMode {
-		Additive = 0,
+		AddSub = 0,
 		ScreenBlend = 1,
 		Multiply = 2,
         Overlay = 3,

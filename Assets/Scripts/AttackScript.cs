@@ -14,64 +14,67 @@ public class AttackScript : MonoBehaviour {
 
 	void Update () 
 	{
-		if (pushes>0)
+		if (Network.isServer)
 		{
-			if (target.transform.position.x>transform.position.x)
-				
+			if (pushes>0)
 			{
-				Vector3 movement = new Vector3(50.0f,0.0f,0.0f);
-				rigidbody.AddForce(movement*speed*Time.deltaTime);
+				if (target.transform.position.x>transform.position.x)
+					
+				{
+					Vector3 movement = new Vector3(50.0f,0.0f,0.0f);
+					rigidbody.AddForce(movement*speed*Time.deltaTime);
+					
+				}
 				
+				if (target.transform.position.x<transform.position.x)
+					
+				{
+					
+					Vector3 movement = new Vector3(-50.0f,0.0f,0.0f);
+					rigidbody.AddForce(movement*speed*Time.deltaTime);
+					
+				}
+				
+				if (target.transform.position.z>transform.position.z)
+					
+				{
+					
+					Vector3 movement = new Vector3(0.0f,0.0f,50.0f);
+					rigidbody.AddForce(movement*speed*Time.deltaTime);
+					
+				}
+				
+				if (target.transform.position.z<transform.position.z)
+					
+				{
+					
+					Vector3 movement = new Vector3(0.0f,0.0f,-50.0f);
+					rigidbody.AddForce(movement*speed*Time.deltaTime);
+					
+				}
+				if (target.transform.position.y>transform.position.z)
+					
+				{
+					
+					Vector3 movement = new Vector3(0.0f,50.0f,0.0f);
+					rigidbody.AddForce(movement*speed*Time.deltaTime);
+					
+				}
+				
+				if (target.transform.position.y<transform.position.y)
+					
+				{
+					
+					Vector3 movement = new Vector3(0.0f,-50.0f,0.0f);
+					rigidbody.AddForce(movement*speed*Time.deltaTime);
+					
+				}
+				pushes=pushes-1;
 			}
-			
-			if (target.transform.position.x<transform.position.x)
-				
+			else
 			{
-				
-				Vector3 movement = new Vector3(-50.0f,0.0f,0.0f);
-				rigidbody.AddForce(movement*speed*Time.deltaTime);
-				
+				Destroy(gameObject);
 			}
-			
-			if (target.transform.position.z>transform.position.z)
-				
-			{
-				
-				Vector3 movement = new Vector3(0.0f,0.0f,50.0f);
-				rigidbody.AddForce(movement*speed*Time.deltaTime);
-				
-			}
-			
-			if (target.transform.position.z<transform.position.z)
-				
-			{
-				
-				Vector3 movement = new Vector3(0.0f,0.0f,-50.0f);
-				rigidbody.AddForce(movement*speed*Time.deltaTime);
-				
-			}
-			if (target.transform.position.y>transform.position.z)
-				
-			{
-				
-				Vector3 movement = new Vector3(0.0f,50.0f,0.0f);
-				rigidbody.AddForce(movement*speed*Time.deltaTime);
-				
-			}
-			
-			if (target.transform.position.y<transform.position.y)
-				
-			{
-				
-				Vector3 movement = new Vector3(0.0f,-50.0f,0.0f);
-				rigidbody.AddForce(movement*speed*Time.deltaTime);
-				
-			}
-			pushes=pushes-1;
-		}
-		else
-		{
-			Destroy(gameObject);
 		}
 	}
 }
