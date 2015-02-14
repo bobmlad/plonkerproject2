@@ -2,7 +2,7 @@
 #pragma implicit
 #pragma downcast
 
-// Does this script currently respond to input?
+// Does this script currently respond to input? No it doesn't.
 var canControl : boolean = true;
 
 var useFixedUpdate : boolean = true;
